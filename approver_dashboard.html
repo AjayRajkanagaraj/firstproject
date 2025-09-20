@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VMS | Approver Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f2f4f7;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #1f2a36;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .navbar .logout {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #1f2a36;
+    }
+
+    /* Visitor Request Cards */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .visitor-info {
+      flex: 1;
+    }
+    .visitor-info h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #333;
+    }
+    .visitor-info p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.1s;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    .btn-approve {
+      background: #28a745;
+      color: #fff;
+    }
+    .btn-approve:hover {
+      background: #218838;
+    }
+    .btn-reject {
+      background: #dc3545;
+      color: #fff;
+    }
+    .btn-reject:hover {
+      background: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Approver Dashboard</h1>
+    <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Container -->
+  <div class="container">
+    <h2>Pending Visitor Requests</h2>
+
+    <!-- Example Request 1 -->
+    <div class="card">
+      <div class="visitor-info">
+        <h3>John Doe</h3>
+        <p><strong>Company:</strong> ABC Corp</p>
+        <p><strong>Purpose:</strong> Meeting with HR</p>
+        <p><strong>Date:</strong> 2025-09-20</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-approve">✅ Approve</button>
+        <button class="btn btn-reject">❌ Reject</button>
+      </div>
+    </div>
+
+    <!-- Example Request 2 -->
+    <div class="card">
+      <div class="visitor-info">
+        <h3>Jane Smith</h3>
+        <p><strong>Company:</strong> XYZ Pvt Ltd</p>
+        <p><strong>Purpose:</strong> Plant Tour</p>
+        <p><strong>Date:</strong> 2025-09-22</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-approve">✅ Approve</button>
+        <button class="btn btn-reject">❌ Reject</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

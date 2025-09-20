@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VMS | Security QR Scanner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f2f4f7;
+      color: #333;
+    }
+
+    .navbar {
+      background: #1f2a36;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 { font-size: 18px; margin: 0; }
+    .navbar .logout { color: #fff; text-decoration: none; font-size: 14px; font-weight: bold; }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    h2 { margin-bottom: 20px; color: #1f2a36; }
+
+    /* Camera Box */
+    .camera-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+    #reader {
+      width: 100%;
+    }
+
+    /* Result Box */
+    .result-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+      display: none;
+      text-align: left;
+    }
+    .result-box h3 { margin-top: 0; }
+    .btn {
+      margin-top: 15px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.1s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-receipt { background: #3a7bd5; color: #fff; }
+    .btn-receipt:hover { background: #2e62a9; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Security Dashboard</h1>
+    <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Container -->
+  <div class="container">
+    <h2>Scan Visitor QR Code</h2>
+
+    <!-- QR Scanner Camera -->
+    <div class="camera-box">
+      <div id="reader"></div>
+    </div>
+
+    <!-- Scan Result -->
+    <div class="result-box" id="resultBox">
+      <h3>Visitor Verified ✅</h3>
+      <p><strong>Name:</strong> <span id="vname">---</span></p>
+      <p><strong>Company:</strong> <span id="vcompany">---</span></p>
+      <p><strong>Purpose:</strong> <span id="vpurpose">---</span></p>
+      <p><strong>Date:</strong> <span id="vdate">---</span></p>
+      <button class="btn btn-receipt" onclick="window.print()">🧾 Print Receipt</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script>
+    function onScanSuccess(decodedText) {
+      try {
+        const data = JSON.parse(decodedText); // expecting JSON QR
+        document.getElementById("vname").innerText = data.name || "---";
+        document.getElementById("vcompany").innerText = data.company || "---";
+        document.getElementById("vpurpose").innerText = data.purpose || "---";
+        document.getElementById("vdate").innerText = data.date || "---";
+      } catch {
+        document.getElementById("vname").innerText = decodedText;
+      }
+      document.getElementById("resultBox").style.display = "block";
+    }
+
+    function startScanner() {
+      let html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 10, qrbox: 250 }
+      );
+      html5QrcodeScanner.render(onScanSuccess);
+    }
+    startScanner();
+  </script>
+</body>
+</html>

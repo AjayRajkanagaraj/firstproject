@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>VMS</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body id="page-top">
+ 
+<nav class="navbar">
+    <a href="/" class="logo"><img src="power_industrial.png" alt="Logo" /></a>
+
+
+    <ul class="nav-menu">
+        <li><a href="#page-top" class="nav-link">Home</a></li>
+    </ul>
+    <button type="button" class="nav-toggle" data-toggle="collapse" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+    <section id="banner" class="banner-section">
+        <div class="banner-content">
+            <p>Welcome to Visitor Management System</p>
+            <a href="visitor.html" class="btn">Visitor</a>
+            <a href="approver.html" class="btn">Approver</a>
+            <a href="security.html" class="btn">Security</a>
+            <a href="admin.php" class="btn">Admin</a>
+        </div>
+    </section>
+
+    
+    <footer id="footer" class="footer-section">
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a target="_blank" href=""><i class="fab fa-facebook"></i></a></li>
+                <li><a target="_blank" href=""><i class="fab fa-twitter"></i></a></li>
+            </ul>
+            <div class="copyright">
+                Copyright &copy; 2023-2025 
+                <a href="" target='_blank'>VMS</a>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+   
+    <a href="#page-top" class="scroll-top"><i class="fas fa-angle-up"></i></a>
+
+   
+  <script>
+  // ===== Mobile Hamburger Menu Toggle =====
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+  });
+
+  // ===== Scroll to Top Button =====
+  const scrollBtn = document.querySelector('.scroll-top');
+
+  window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+          scrollBtn.style.display = 'block';
+      } else {
+          scrollBtn.style.display = 'none';
+      }
+  });
+
+  scrollBtn.addEventListener('click', () => {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  });
+
+  // ===== Smooth Scroll for Navbar Links =====
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+              window.scrollTo({
+                  top: targetSection.offsetTop - 70, // adjust offset for navbar height
+                  behavior: 'smooth'
+              });
+          }
+
+          // Close mobile menu after click
+          navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    navToggle.classList.toggle('open'); // animate to X
+});
+      });
+  });
+</script>
+
+
+    
+</body>
+</html>

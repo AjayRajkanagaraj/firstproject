@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VMS | Visitor Pass</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <!-- <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="img/avatar.png" alt="Visitor Avatar" class="avatar">
+      <p>Dear Visitor</p>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search..." />
+      <i class="fas fa-search"></i>
+    </div>
+    <nav class="sidebar-menu">
+      <a href="#" class="active"><i class="fas fa-id-card"></i> Apply for Visitor Pass</a>
+    </nav>
+  </aside> -->
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="page-header">
+      <h2>Apply for Visitor Pass</h2>
+    </header>
+
+    <div class="container-form">
+      <form action="visitor.php" method="post">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="vname">Visitor Name<span>*</span></label>
+            <input type="text" id="vname" name="vname" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">WhatsApp Number<span>*</span></label>
+            <input type="text" id="phone" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Visitor Email</label>
+            <input type="email" id="email" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Visitor Gender<span>*</span></label>
+            <select id="gender" name="gender" required>
+              <option>Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Visitor's Company<span>*</span></label>
+            <input type="text" id="company" name="company" required>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Location<span>*</span></label>
+            <select id="location" name="location" required>
+              <option>Select Location of Visit</option>
+              <option>Plant 1</option>
+              <option>Plant 2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dept">Approver's Department<span>*</span></label>
+            <select id="dept" name="dept" required>
+              <option>Select Department</option>
+              <option>HR</option>
+              <option>Operations</option>
+              <option>Security</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="approver">Approver<span>*</span></label>
+            <select id="approver" name="approver" required>
+              <option>Select Approver</option>
+              <option>Manager A</option>
+              <option>Manager B</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Entry Date<span>*</span></label>
+            <input type="date" id="date" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="time">Entry Time<span>*</span></label>
+            <input type="time" id="time" name="time" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="purpose">Purpose of Visit</label>
+          <textarea id="purpose" name="purpose" rows="3"></textarea>
+        </div>
+        
+        <!-- Camera Capture Section -->
+        <div class="form-group camera-section">
+          <label>Visitor Photo</label>
+          <div class="camera-box">
+            <video id="camera" autoplay></video>
+            <canvas id="snapshot"></canvas>
+          </div>
+          <button type="button" id="takePhoto" class="btn-secondary">📸 Take Photo</button>
+        </div>
+
+        
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Apply Pass</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Camera Script -->
+  <script>
+    const video = document.getElementById('camera');
+    const canvas = document.getElementById('snapshot');
+    const takePhotoBtn = document.getElementById('takePhoto');
+
+    // Request Camera Access
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+        })
+        .catch(err => {
+          alert("Camera access denied or unavailable.");
+        });
+    }
+
+    // Capture Photo
+    takePhotoBtn.addEventListener('click', () => {
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    });
+  </script>
+
+</body>
+</html>
